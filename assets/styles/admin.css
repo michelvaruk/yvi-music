@@ -1,0 +1,11 @@
+.item-active,
+.item-active svg.transition {
+  background-color: rgb(17 24 39);
+  color: #FFF;
+}
+
+.item-active:hover,
+.item-active:hover svg.transition {
+  background-color: rgb(17 24 39);
+  color: #FFF;
+}

@@ -1,5 +1,12 @@
 twig:
     file_name_pattern: '*.twig'
+    form_themes:
+        - '@TalesFromADevFlowbite/form/default.html.twig'
+
+    globals:
+        siteInfo: '@App\Twig\Extension\SiteExtension'
+    paths:
+        '%kernel.project_dir%/public/images': images
 
 when@test:
     twig:

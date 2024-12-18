@@ -1,0 +1,66 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Liste des musiciens
+{% endblock %}
+
+{% block body %}
+	<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
+		<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+			<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+				<caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+					<div class="xl:flex xl:justify-between">
+						<div class="display-title">
+							Liste des musiciens
+							<p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Voici la liste des musiciens, avec leurs projets</p>
+						</div>
+						<div class="display-buttons">
+							<a href="{{ path('app_edit_member_new') }}" class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-block">Nouveau musicien</a>
+						</div>
+					</div>
+                    {% include "_partials/_searchbar.html.twig" %}
+				</caption>
+				<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+					<tr>
+						<th scope="col" class="px-6 py-3">Photo</th>
+						<th scope="col" class="px-6 py-3">Nom</th>
+						<th scope="col" class="px-6 py-3">Prénom</th>
+                        <th scope="col" class="px-6 py-3">Instruments</th>
+						<th scope="col" class="px-6 py-3">Projets</th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Actions</span>
+                        </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for member in members %}
+						<tr class="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 max-h-10">
+							<td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                {% if member.pictureName %}
+                                    <img src="{{ asset('images/' ~ member.pictureName) }}" alt="Photo du musicien {{ member.firstname ~ ' ' ~ member.lastname }}" class="w-8 h-8 rounded-full">
+                                {% endif %}
+                            </td>
+							<th class="px-6 py-4">{{ member.lastname|capitalize }}</th>
+							<th class="px-6 py-4">{{ member.firstname|capitalize }}</th>
+							<td class="px-6 py-4">{{ member.instruments }}</td>
+                            <td class="px-6 py-4">
+                                {% for memberProject in member.project %}
+                                    {{ memberProject.title }}<br>
+                                {% else %}
+                                    Aucun projet rattaché à ce musicien.
+                                {% endfor %}
+                            </td>
+                            <td class="px-6 py-4 text-right whitespace-nowrap">
+                                <a href="{{ path('app_edit_member_edit', {'id': member.id}) }}">Modifier</a><br>
+                                {{ include('admin/member/_delete.html.twig', { className: 'font-medium text-red-600 dark:text-blue-500 hover:underline'}) }}
+                            </td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="6">Aucune donnée trouvée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

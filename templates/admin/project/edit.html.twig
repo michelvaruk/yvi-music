@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier les informations du projet{% endblock %}
+
+{% block body %}
+<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
+    <div class="mb-5 p-5 pl-0">
+        <h1>Modifier les informations de {{ project.title }}</h1>
+    </div>
+
+    {{ include('admin/project/_form.html.twig') }}
+</div>
+
+{% endblock %}

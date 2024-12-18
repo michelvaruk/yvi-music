@@ -1,0 +1,62 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Liste des dates
+{% endblock %}
+
+{% block body %}
+	<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg">
+		<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+			<table class="w-full text-sm text-left rtl:text-right text-gray-500">
+				<caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white">
+					<div class="xl:flex xl:justify-between">
+						<div class="display-title">
+							Liste des dates
+							<p class="mt-1 text-sm font-normal text-gray-500">Voici la liste des dates et des lieux associés</p>
+						</div>
+						<div class="display-buttons">
+							<a href="{{ path('app_edit_calendar_new') }}" class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-block">Nouvelle date</a>
+						</div>
+					</div>
+                    {% include "_partials/_searchbar.html.twig" %}
+				</caption>
+				<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+					<tr>
+						<th scope="col" class="px-6 py-3">Image</th>
+						<th scope="col" class="px-6 py-3">Nom / type</th>
+						<th scope="col" class="px-6 py-3">Lieu</th>
+						<th scope="col" class="px-6 py-3">Date</th>
+                        <th scope="col" class="px-6 py-3">Lien vers l'évènement</th>
+						<th scope="col" class="px-6 py-3">Projet</th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Actions</span>
+                        </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for calendar in calendars %}
+						<tr class="bg-white border-b hover:bg-gray-50 max-h-10">
+							<td scope="row" class="px-6 py-4 font-medium text-gray-900">
+                                {% if calendar.pictureName %}
+                                    <img src="{{ asset('images/' ~ calendar.pictureName) }}" alt="Imagde de partage de l'événement {{ calendar.title }}" class="w-8 h-8 rounded-full">
+                                {% endif %}
+                            </td>
+							<th class="px-6 py-4">{{ calendar.title ~ ' ' ~ calendar.type }}</th>
+							<th class="px-6 py-4">{{ calendar.place.title }}</th>
+							<td class="px-6 py-4">{{ calendar.date|date("m/d/Y H:i", "Europe/Paris") }}</td>
+                            <td class="px-6 py-4">{{ calendar.url }}</td>
+							<td class="px-6 py-4">{{ calendar.project.title }}</td>
+                            <td class="px-6 py-4 text-right whitespace-nowrap">
+                                <a href="{{ path('app_edit_calendar_edit', {'id': calendar.id}) }}">Modifier</a><br>
+                                {{ include('admin/calendar/_delete.html.twig', { className: 'font-medium text-red-600 hover:underline'}) }}
+                            </td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="6">Aucune donnée trouvée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

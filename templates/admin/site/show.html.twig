@@ -1,0 +1,56 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Informations générales du site{% endblock %}
+
+{% block body %}
+<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
+    <div class="shadow-md sm:rounded-lg mb-5 p-5">
+        <div class="px-4 sm:px-0 show-heading">
+            <div class="show-title">
+                <h1 class="text-base font-semibold leading-7 text-gray-900">Informations générales du site</h1>
+                <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500"></p>
+            </div>
+            <div class="show-buttons">
+                <a href="{{ path('app_edit_site_edit') }}" class="font-medium text-orange-600 dark:text-blue-500 hover:underline">Modifier</a>
+            </div>
+        </div>
+        <div class="mt-6 border-t border-gray-100">
+            <dl class="divide-y divide-gray-100">
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Titre</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ site.title }}</dd>
+                </div>
+                {% if site.logoName %}
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-medium leading-6 text-gray-900">Logo</dt>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                            <img src="{{ asset('images/logo/' ~ site.logoName) }}" alt="{{ 'logo du ' ~ site.title }}" class="h-20 contain">
+                        </dd>
+                    </div>
+                {% endif %}
+                {% if site.pictureName %}
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-medium leading-6 text-gray-900">Image principale</dt>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                            <img src="{{ asset('images/' ~ site.pictureName) }}" alt="{{ 'image du ' ~ site.title }}" class="h-20 contain">
+                        </dd>
+                    </div>
+                {% endif %}
+                {% if site.phone %}
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-medium leading-6 text-gray-900">Téléphone</dt>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ site.phone }}</dd>
+                    </div>
+                {% endif %}
+                {% if site.description %}
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-medium leading-6 text-gray-900">Description</dt>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ site.description|raw }}</dd>
+                    </div>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

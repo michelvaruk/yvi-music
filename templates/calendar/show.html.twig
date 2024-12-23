@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': calendar.title,
+        'subtitle': calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            {% if calendar.pictureName %}
+                <img src="{{ path('images/' ~ calendar.pictureName) }}" alt="Affiche du concert {{ calendar.title }}">
+            {% endif %}
+            
+        </article>
+    </main>
+
+{% endblock %}

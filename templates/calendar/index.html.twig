@@ -7,7 +7,7 @@
     <main id="main">
         <article class="yvi-container">
             {% for calendar in calendars %}
-                <a href="#">
+                <a href="{{ path('app_calendar_show', {'id': calendar.id, 'slug': calendar.slug}) }}">
                     <div class="date">
                         <h3 class="text-center">{{ calendar.title|upper }}</h3>
                         {% if calendar.picturename %}

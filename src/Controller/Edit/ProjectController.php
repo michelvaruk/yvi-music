@@ -56,6 +56,23 @@ class ProjectController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/switch', name:'app_edit_project_switch', methods: ['POST'])]
+    public function switch(Project $project, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('switch' . $project->getId(), $request->getPayload()->get('_token'))) {
+            if ($project->isActive()) {
+                $project->setActive(false);
+                $this->addFlash('success', 'Le projet ' . $project->getTitle() . ' a été désactivé.');
+            } else {
+                $project->setActive(true);
+                $this->addFlash('success', 'Le projet ' . $project->getTitle() . ' a été activé.');
+            }
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_edit_project_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}', name: 'app_edit_project_delete', methods: ['POST'])]
     public function delete(Request $request, Project $project, EntityManagerInterface $entityManager,): Response
     {

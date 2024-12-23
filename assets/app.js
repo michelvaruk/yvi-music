@@ -7,5 +7,6 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 import './styles/admin.css';
+import './styles/yvi-music.css';
 
 import "../node_modules/flowbite/dist/flowbite.turbo.min.js";

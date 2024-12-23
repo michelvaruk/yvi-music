@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Calendar;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,20 +17,21 @@ class CalendarRepository extends ServiceEntityRepository
         parent::__construct($registry, Calendar::class);
     }
 
-    //    /**
-    //     * @return Calendar[] Returns an array of Calendar objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+    * @return Calendar[] Returns an array of Calendar objects
+    */
+    public function findFuture(?int $max = 50): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.date > :val')
+            ->andWhere('c.active = 1')
+            ->setParameter('val', new DateTime('now'))
+            ->orderBy('c.date', 'ASC')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     //    public function findOneBySomeField($value): ?Calendar
     //    {

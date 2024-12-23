@@ -1,15 +1,11 @@
 {% extends "base.html.twig" %}
 {% block body %}
     {% include "_partials/_header.html.twig" with {
-        'title': siteInfo.getSiteInfo.title,
-        'subtitle': siteInfo.getSiteInfo.description|striptags
+        'title': 'Découvrir Yvi-music en live',
+        'subtitle': '>>> Ajouter un sous-titre pour cette page <<<'
     } %}
     <main id="main">
-        {% if siteInfo.getSiteInfo.pictureName %}
-            <img src="{{ asset('images/' ~ siteInfo.getSiteInfo.pictureName) }}" alt="{{ 'image du ' ~ siteInfo.getSiteInfo.title }}" class="w-full contain">
-        {% endif %}
         <article class="yvi-container">
-            <h2>Nos prochaines dates</h2>
             {% for calendar in calendars %}
                 <a href="#">
                     <div class="date">
@@ -29,9 +25,6 @@
                     </div>
                 </a>
             {% endfor %}
-            <div class="more">
-                <a href="{{ path('app_calendar') }}">Découvrir plus de dates</a>
-            </div>
         </article>
     </main>
 

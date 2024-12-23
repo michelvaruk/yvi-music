@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\ActiveTrait;
 use App\Entity\Trait\PositionTrait;
 use App\Entity\Trait\TitleTrait;
 use App\Repository\FormulaRepository;
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: FormulaRepository::class)]
 class Formula
 {
+    use ActiveTrait;
     use TitleTrait;
     use PositionTrait;
     

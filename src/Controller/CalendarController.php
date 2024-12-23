@@ -7,12 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class MainController extends AbstractController
+class CalendarController extends AbstractController
 {
-    #[Route('/', name: 'app_main', methods: ['GET'])]
+    #[Route('/calendar', name: 'app_calendar', methods: ['GET'])]
     public function index(CalendarRepository $calendars): Response {
-        return $this->render('main/index.html.twig', [
-            'calendars' => $calendars->findFuture(3)
+        return $this->render('calendar/index.html.twig', [
+            'calendars' => $calendars->findFuture()
         ]);
     }
 }

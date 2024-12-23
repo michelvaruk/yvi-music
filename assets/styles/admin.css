@@ -9,3 +9,19 @@
   background-color: rgb(17 24 39);
   color: #FFF;
 }
+
+.cc_active,
+.not-active {
+  display: block;
+  width: .5rem;
+  height: .5rem;
+  border-radius: .5rem;
+}
+
+.not-active {
+  background-color: rgb(224 36 36);
+}
+
+.cc_active {
+  background-color: rgb(5 122 85);
+}

@@ -26,6 +26,7 @@
 						<th scope="col" class="px-6 py-3">Prénom</th>
                         <th scope="col" class="px-6 py-3">Instruments</th>
 						<th scope="col" class="px-6 py-3">Projets</th>
+						<th scope="col" class="px-6 py-3">Actif</th>
                         <th scope="col" class="px-6 py-3">
                             <span class="sr-only">Actions</span>
                         </th>
@@ -49,6 +50,10 @@
                                     Aucun projet rattaché à ce musicien.
                                 {% endfor %}
                             </td>
+							<td class="px-6 py-4">{% include "_partials/_switch.html.twig" with {
+								entity: member,
+								path: 'app_edit_member_index'
+							} %}</td>
                             <td class="px-6 py-4 text-right whitespace-nowrap">
                                 <a href="{{ path('app_edit_member_edit', {'id': member.id}) }}">Modifier</a><br>
                                 {{ include('admin/member/_delete.html.twig', { className: 'font-medium text-red-600 dark:text-blue-500 hover:underline'}) }}

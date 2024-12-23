@@ -45,7 +45,6 @@ class ProjectController extends AbstractController
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            // dd($project->getMembers());
             $entityManager->flush();
             $this->addFlash('success', 'Le projet ' . $project->getTitle() . ' a été modifié.');
             return $this->redirectToRoute('app_edit_project_index', [], Response::HTTP_SEE_OTHER);

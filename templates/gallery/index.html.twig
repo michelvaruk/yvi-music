@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': 'Gallerie',
+        'subtitle': '>>> Ajouter un sous-titre pour cette page <<<'
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            <div class="gallery">
+                {% for gallery in galleries %}
+                    <img src="{{ asset('images/' ~ gallery.pictureName) }}" alt="Photo de {{ project.title }}" data-project="{{ project.id }}">
+                {% endfor %}
+            </div>
+        </article>
+    </main>
+
+{% endblock %}

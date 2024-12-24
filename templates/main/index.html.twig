@@ -33,6 +33,12 @@
                 <a href="{{ path('app_calendar') }}">Découvrir plus de dates</a>
             </div>
         </article>
+        <article class="yvi-container">
+            <h2>Tous les projets</h2>
+            {% for project in projects %}
+                {{ project.title }}
+            {% endfor %}
+        </article>
     </main>
 
 {% endblock %}

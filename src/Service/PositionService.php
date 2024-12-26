@@ -31,7 +31,7 @@ class PositionService
             return false;
         $replacedElement = $this->formulaRepository->findOneBy([
             'project' => $formula->getProject(),
-            'position' => $formula->getPosition(),
+            'position' => $targetPosition,
         ]);
         if (!$replacedElement)
             return false;

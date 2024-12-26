@@ -35,7 +35,7 @@ class FormulaController extends AbstractController
 
             $this->addFlash('success', 'La formule ' . $formula->getTitle() . ' a été enregistrée.');
 
-            return $this->redirectToRoute('app_edit_project_show', ['id' => $project->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_edit_project_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('admin/formula/new.html.twig', [
             'form' => $form,
@@ -50,7 +50,7 @@ class FormulaController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
             $this->addFlash('success', 'La formule ' . $formula->getTitle() . ' a été modifiée.');
-            return $this->redirectToRoute('app_edit_project_show', ['id' => $formula->getProject()->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_edit_project_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('admin/formula/edit.html.twig', [
             'formula' => $formula,
@@ -72,7 +72,7 @@ class FormulaController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_edit_project_show', ['id' => $formula->getProject()->getId()], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_edit_project_index', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/{id}/move/{direction}', name:'app_edit_formula_move', methods: ['POST'])]
@@ -83,7 +83,7 @@ class FormulaController extends AbstractController
             if (!$move)
                 $this->addFlash('alert', 'Le changement d\'ordre demandé n\'a pu s\'effectuer, merci de ré-essayer. En cas de nouvel échec, merci de prévenir l\'administrateur.');
         }
-        return $this->redirectToRoute('app_edit_project_show', ['id' => $formula->getProject()->getId()], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_edit_project_index', [], Response::HTTP_SEE_OTHER);
     }
 
 
@@ -99,6 +99,6 @@ class FormulaController extends AbstractController
 
         }
 
-        return $this->redirectToRoute('app_edit_project_show', ['id' => $formula->getProject()->getId()], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_edit_project_index', [], Response::HTTP_SEE_OTHER);
     }
 }

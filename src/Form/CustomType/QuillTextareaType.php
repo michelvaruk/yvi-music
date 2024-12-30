@@ -36,7 +36,7 @@ class QuillTextareaType extends AbstractType
                 ],
                 'quill_options' => [
                     QuillGroup::build(
-                        new HeaderGroupField(2, 3, 4),
+                        new HeaderGroupField(4),
                     ),
                     QuillGroup::build(
                         new BoldField(),

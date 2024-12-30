@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': project.title,
+        'subtitle': project.presentation|striptags
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            {% if project.pictureName %}
+                <img src="{{ asset('images/' ~ project.pictureName) }}" alt="Photo de  {{ project.title }}">
+            {% endif %}
+            <section class="members">
+                <h2>Les musiciens de {{ project.title }}</h2>
+                {% for member in project.members %}
+                    {% if member.active %}
+                        <div class="member">
+                            <h3>{{ member.firstname|capitalize }}</h3>
+                            {% if member.pictureName %}
+                                <img src="{{ asset('images/' ~ member.pictureName) }}" alt="Photo de {{ member.firstname ~ ' ' ~ member.lastname}}">
+                            {% endif %}
+                            <p><span class="underline">Ses instruments :</span> {{ member.instruments }}</p>
+                            <p>{{ member.bio|raw }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+            
+        </article>
+    </main>
+
+{% endblock %}

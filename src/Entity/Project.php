@@ -54,7 +54,7 @@ class Project
     /**
      * @var Collection<int, Gallery>
      */
-    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'project')]
+    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'project', cascade: ['persist'])]
     private Collection $galleries;
 
     /**
@@ -68,9 +68,6 @@ class Project
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $youtube = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $tiktok = null;
 
     /**
      * @var Collection<int, YoutubeLink>
@@ -256,18 +253,6 @@ class Project
     public function setYoutube(?string $youtube): static
     {
         $this->youtube = $youtube;
-
-        return $this;
-    }
-
-    public function getTiktok(): ?string
-    {
-        return $this->tiktok;
-    }
-
-    public function setTiktok(?string $tiktok): static
-    {
-        $this->tiktok = $tiktok;
 
         return $this;
     }

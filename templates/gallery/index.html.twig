@@ -7,9 +7,13 @@
     <main id="main">
         <article class="yvi-container">
             <div class="gallery">
-                {% for gallery in galleries %}
-                    <img src="{{ asset('images/' ~ gallery.pictureName) }}" alt="Photo de {{ project.title }}" data-project="{{ project.id }}">
-                {% endfor %}
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {% for gallery in galleries %}
+                        <div>
+                            <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/' ~ gallery.pictureName) }}" alt="Photo de {{ gallery.project.title }}" data-project="{{ gallery.project.id }}">
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </article>
     </main>

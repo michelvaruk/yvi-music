@@ -106,4 +106,10 @@ return [
     'quill-resize-image' => [
         'version' => '1.0.5',
     ],
+    '@stimulus-components/carousel' => [
+        'version' => '6.0.0',
+    ],
+    'swiper/bundle' => [
+        'version' => '11.1.0',
+    ],
 ];

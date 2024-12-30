@@ -50,10 +50,6 @@ class ProjectType extends AbstractType
                 'label' => 'Lien vers la page Instagram du projet',
                 'required' => false,
             ])
-            ->add('tiktok', UrlType::class, [
-                'label' => 'Lien vers la page Tiktok du projet',
-                'required' => false,
-            ])
             ->add('pictureFile', ImageFileType::class, [
                 'label' => 'Image de présentation du projet',
                 'field_name' => 'pictureFile'
@@ -77,6 +73,18 @@ class ProjectType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'entry_options' => ['label' => false],
+                'attr' => [
+                    'data-controller' => 'form-collection'
+                ]
+            ])
+            ->add('galleries', CollectionType::class, [
+                'label' => 'Photos du projet',
+                'entry_type' => GalleryType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'entry_options' => [
+                    'label' => false],
                 'attr' => [
                     'data-controller' => 'form-collection'
                 ]

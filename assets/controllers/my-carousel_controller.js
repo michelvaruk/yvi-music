@@ -19,6 +19,7 @@ export default class extends Carousel {
       loop: true,
       spaceBetween: 30,
       pagination: {
+        clickable: true,
         el: '.swiper-pagination',
         type: 'bullets'
       },
@@ -26,7 +27,7 @@ export default class extends Carousel {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
-      autoplay: true
+      autoplay: true,
     }
   }
 }

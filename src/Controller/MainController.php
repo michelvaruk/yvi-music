@@ -13,7 +13,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_main', methods: ['GET'])]
     public function index(CalendarRepository $calendars, ProjectRepository $projects): Response {
         return $this->render('main/index.html.twig', [
-            'calendars' => $calendars->findFuture(3),
+            'calendars' => $calendars->findFuture(5),
             'projects' => $projects->findBy(['active' => true])
         ]);
     }

@@ -33,6 +33,24 @@ class CalendarRepository extends ServiceEntityRepository
         ;
     }
 
+        /**
+    * @return Calendar[] Returns an array of Calendar objects
+    */
+    public function findFutureByProject(int $project): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.date > :val')
+            ->andWhere('c.active = 1')
+            ->andWhere('c.project = :p')
+            ->setParameter('val', new DateTime('now'))
+            ->setParameter('p', $project)
+            ->orderBy('c.date', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     //    public function findOneBySomeField($value): ?Calendar
     //    {
     //        return $this->createQueryBuilder('c')

@@ -42,7 +42,7 @@ class Project
     /**
      * @var Collection<int, Calendar>
      */
-    #[ORM\OneToMany(targetEntity: Calendar::class, mappedBy: 'project', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Calendar::class, mappedBy: 'project', orphanRemoval: true, fetch: 'EAGER')]
     private Collection $calendars;
 
     /**

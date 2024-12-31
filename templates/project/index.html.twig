@@ -1,32 +1,14 @@
 {% extends "base.html.twig" %}
-{% block stylesheets %}
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-{% endblock %}
 {% block body %}
     {% include "_partials/_header.html.twig" with {
-        'title': siteInfo.getSiteInfo.title,
-        'subtitle': siteInfo.getSiteInfo.description|striptags
+        'title': 'Tous les projets Yvi-Music',
+        'subtitle': 'Présentation de tous les projets Yvi-Music en cours'
     } %}
     <main id="main">
-        {% if siteInfo.getSiteInfo.pictureName %}
-            <img src="{{ asset('images/' ~ siteInfo.getSiteInfo.pictureName) }}" alt="{{ 'image du ' ~ siteInfo.getSiteInfo.title }}" class="w-full contain">
-        {% endif %}
         <article class="yvi-container">
-            <h2>Nos prochaines dates</h2>
-                {% include "_partials/_calendar-slider.html.twig" %}
-            </div>
-            <div class="more">
-                <a href="{{ path('app_calendar') }}">Découvrir plus de dates</a>
-            </div>
-        </article>
-        <article class="yvi-container">
-            <h2>Tous les projets</h2>
             {% for project in projects %}
                 <div class="project">
-                    <h3 class="text-center">{{ project.title }}</h3>
+                    <h2 class="text-center">{{ project.title }}</h2>
                     <p class="italic text-center">{{ project.style }}</p>
                     {% if project.picturename %}
                         <img src="{{ asset('images/' ~ project.picturename) }}" alt="Photo de {{ project.title }}" class="w-full">
@@ -58,8 +40,7 @@
                     </div>
                     <a href="{{ path('app_project_show', {
                         'id': project.id,
-                        'slug': project.slug
-                    })}}" class="underline">En savoir plus</a>
+                        'slug': project.slug}) }}">En savoir plus</a>
                 </div>
             {% endfor %}
         </article>

@@ -30,7 +30,7 @@ class Calendar
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'calendars')]
+    #[ORM\ManyToOne(inversedBy: 'calendars', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Project $project = null;
 

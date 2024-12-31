@@ -7,9 +7,31 @@
     <main id="main">
         <article class="yvi-container">
             {% if calendar.pictureName %}
-                <img src="{{ path('images/' ~ calendar.pictureName) }}" alt="Affiche du concert {{ calendar.title }}">
+                <img src="{{ asset('images/' ~ calendar.pictureName) }}" alt="Affiche du concert {{ calendar.title }}">
             {% endif %}
+            <h2>{{ calendar.title }}</h2>
+            <p><span class="underline">Type de concert : </span>{{ calendar.type }}</p>
+            {% if calendar.url %}
+                <p>Pour plus de renseignements : {{ calendar.url }}</p>
+            {% endif %}
+            <section class="py-8">
+                <h3>Se rendre au concert</h3>
+                <address>
+                    {{ calendar.place.title }}</br>
+                    {{ calendar.place.description|raw }}
+                    {{ calendar.place.address }}</br>
+                    {{ calendar.place.zipcode ~ ' ' ~ calendar.place.city }}</br>
+                    {% if calendar.place.phone %}
+                        <a href="tel:{{ calendar.place.phone }}">{{ calendar.place.phone }}</a>
+                    {% endif %}
+                    {% if calendar.place.email %}
+                        <a href="mailto:{{ calendar.place.email }}">{{ calendar.place.email }}</a>
+                    {% endif %}
+                </address>
+            </section>
         </article>
+        
+
     </main>
 
 {% endblock %}

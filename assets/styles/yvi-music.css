@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Galada&display=swap');
 
+:root {
+  --gold: linear-gradient(90deg, #FF8008, #FFC837);
+  --secondary: #dae6ff;
+  --alternative: #ffdecd;
+}
+
+
 #front {
   background-color: black;
   color: #FFF;
@@ -24,6 +31,10 @@ header .title {
 
 #front h2 {
   font-size: 1.8rem;
+  background: var(--gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 #front h3 {
@@ -44,10 +55,13 @@ header .title p {
   width: 90%;
   margin: auto;
 }
-/* 
-.swiper-slide {
-  padding: 1em;
-} */
+
+#front .swiper {
+  --swiper-pagination-bottom: 0;
+  --swiper-pagination-bullet-inactive-color: var(--secondary);
+  --swiper-pagination-color: var(--gold);
+  padding-bottom: 1em;
+}
 
 .date, .member {
   border-radius: 1em;
@@ -57,18 +71,22 @@ header .title p {
 }
 
 .date {
-  background: linear-gradient(90deg, #FF8008, #FFC837);
+  background: var(--gold);
   transition: all .2s ease-in-out;
 }
 
 .date:hover {
   transform: scale(1.02);
   transition: all .2s ease-in-out;
+  
 }
 
-.member {
-  /* background: linear-gradient(90deg, #FF8008, #FFC837); */
-  background-color: #FFF;
+.member:nth-child(odd) {
+  background-color: var(--secondary);
+}
+
+.member:nth-child(even) {
+  background-color: var(--alternative);
 }
 
 .member img {
@@ -84,10 +102,16 @@ header .title p {
 }
 
 .more {
+  margin-top: 2em;
   display: block;
   margin-left: auto;
   text-align: right;
   text-decoration: underline;
+}
+
+.social-network-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 #main-menu {
@@ -101,6 +125,7 @@ header .title p {
   bottom: 0;
   left: 0;
   background-color: black;
+  z-index: 1000;
 }
 
 .menu-displayed #main-menu {
@@ -112,4 +137,24 @@ header .title p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.bio {
+  max-height: 3em;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+}
+
+.bio.display-text {
+  max-height: 100em;
+  transition: all .6s ease-in-out;
+}
+
+svg[data-action="click->display-text#toggle"] {
+  transition: all .6s ease-in-out;
+}
+
+svg.display-text {
+  transform: rotate(180deg);
+  transition: all .6s ease-in-out;
 }

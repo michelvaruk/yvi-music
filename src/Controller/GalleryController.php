@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/gallerie')]
+#[Route('/galerie')]
 class GalleryController extends AbstractController
 {
     #[Route('/', name: 'app_gallery', methods: ['GET'])]

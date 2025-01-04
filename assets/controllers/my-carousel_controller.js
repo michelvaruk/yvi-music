@@ -3,10 +3,6 @@ import Carousel from "@stimulus-components/carousel"
 export default class extends Carousel {
   connect() {
     super.connect()
-    console.log("Do what you want here.")
-
-    // The swiper instance.
-    console.log(this.swiper)
 
     // Default options for every carousels.
     this.defaultOptions
@@ -17,7 +13,8 @@ export default class extends Carousel {
     return {
       // Your default options here
       loop: true,
-      spaceBetween: 30,
+      effect: 'flip',
+      // spaceBetween: 30,
       pagination: {
         clickable: true,
         el: '.swiper-pagination',
@@ -28,6 +25,9 @@ export default class extends Carousel {
         prevEl: '.swiper-button-prev',
       },
       autoplay: true,
+      autoplay: {
+        delay: 5000,
+      }
     }
   }
 }

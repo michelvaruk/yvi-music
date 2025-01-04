@@ -1,4 +1,16 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.8.1/css/lightgallery.min.css" integrity="sha512-QMCloGTsG2vNSnHcsxYTapI6pFQNnUP6yNizuLL5Wh3ha6AraI6HrJ3ABBaw6SIUHqlSTPQDs/SydiR98oTeaQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
+{% endblock %}
 {% block body %}
     {% include "_partials/_header.html.twig" with {
         'title': project.title,
@@ -69,11 +81,11 @@
             </section>
             <section class="youtube-links mb-24">
                 {% for link in project.youtubelinks %}
-                    <iframe src="https://www.youtube-nocookie.com/embed/{{ link.url }}?si=R9Z0tt7G2F90b8ug" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube-nocookie.com/embed/{{ link.url }}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 {% endfor %}
             </section>
             <section class="gallery mb-24">
-                <h2>Gallerie</h2>
+                <h2>Galerie</h2>
                 {% include "_partials/_gallery.html.twig" with {'galleries': project.galleries} %}
             </section>
         </article>

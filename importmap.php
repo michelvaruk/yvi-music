@@ -112,4 +112,10 @@ return [
     'swiper/bundle' => [
         'version' => '11.1.0',
     ],
+    '@stimulus-components/lightbox' => [
+        'version' => '4.0.0',
+    ],
+    'lightgallery' => [
+        'version' => '2.7.2',
+    ],
 ];

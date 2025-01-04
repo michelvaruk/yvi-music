@@ -2,29 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\YoutubeLink;
-use App\Form\CustomType\QuillTextareaType;
+use App\Entity\Partner;
+use App\Form\CustomType\ImageFileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class YoutubeLinkType extends AbstractType
+class PartnerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre'
+                'label' => 'Nom',
             ])
-            ->add('url', TextType::class, [
-                'label' => 'Lien Youtube',
-                'attr' => [
-                    'placeholder' => 'https://www.youtube.com/watch?v=qDhMzVn1CfA'
-                ]
+            ->add('pictureName', ImageFileType::class, [
+                'label' => 'Logo du partenaire',
+                'field_name' => 'pictureFile'
             ])
-            ->add('description', QuillTextareaType::class, [
-                'label' => 'Description'
+            ->add('url', UrlType::class, [
+                'label' => 'Lien externe',
+                'required' => false,
             ])
         ;
     }
@@ -32,7 +32,7 @@ class YoutubeLinkType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => YoutubeLink::class,
+            'data_class' => Partner::class,
         ]);
     }
 }

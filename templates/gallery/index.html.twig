@@ -1,7 +1,15 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.8.1/css/lightgallery.min.css" integrity="sha512-QMCloGTsG2vNSnHcsxYTapI6pFQNnUP6yNizuLL5Wh3ha6AraI6HrJ3ABBaw6SIUHqlSTPQDs/SydiR98oTeaQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
+{% endblock %}
 {% block body %}
     {% include "_partials/_header.html.twig" with {
-        'title': 'Gallerie',
+        'title': 'Galerie',
         'subtitle': '>>> Ajouter un sous-titre pour cette page <<<'
     } %}
     <main id="main">

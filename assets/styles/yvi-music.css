@@ -4,6 +4,7 @@
   --gold: linear-gradient(90deg, #FF8008, #FFC837);
   --secondary: #dae6ff;
   --alternative: #ffdecd;
+  --brown: #1a0c00;
 }
 
 
@@ -54,6 +55,17 @@ header .title p {
 .yvi-container {
   width: 90%;
   margin: auto;
+}
+
+#front footer {
+  padding: 5%;
+  background-color: var(--brown);
+  margin-top: 4em;
+}
+
+#front footer h2 {
+  font-size: 1.4em;
+  color: #FFF;
 }
 
 #front .swiper {
@@ -139,6 +151,36 @@ header .title p {
   transform: translate(-50%, -50%);
 }
 
+.partner-link {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partner-link .partner-title {
+  height: 0;
+  width: 0;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--brown);
+  opacity: .8;
+  text-align: center;
+}
+
+.partner-link:hover .partner-title {
+  font-size: initial;
+  transition: all .6s ease-in-out;
+  height: 100%;
+  width: 100%;
+}
+
 .bio {
   max-height: 3em;
   overflow: hidden;
@@ -157,4 +199,30 @@ svg[data-action="click->display-text#toggle"] {
 svg.display-text {
   transform: rotate(180deg);
   transition: all .6s ease-in-out;
+}
+
+#contact .mb-6 {
+  margin-bottom: 2em;
+}
+
+#contact label {
+  color: #FFF;
+}
+
+#contact input {
+  background-color: black;
+  /* border: none;
+  border-bottom: solid 1px #FFF; */
+  position: relative;
+}
+
+#contact input::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: yellow;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
 }

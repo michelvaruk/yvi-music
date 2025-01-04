@@ -7,13 +7,13 @@
     <main id="main">
         <article class="yvi-container">
             {% for calendar in calendars %}
-                <a href="{{ path('app_calendar_show', {'id': calendar.id, 'slug': calendar.slug}) }}">
+                <p class="text-center">{{ calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize }}</p>
+                <a href="{{ path('app_calendar_show', {'id': calendar.id, 'slug': calendar.slug}) }}" class="mb-4">
                     <div class="date">
-                        <h3 class="text-center">{{ calendar.title|upper }}</h3>
+                        <h3 class="text-center">{{ calendar.title }}</h3>
                         {% if calendar.picturename %}
                             <img src="{{ asset('images/' ~ calendar.picturename) }}" alt="Affiche du concert {{ calendar.title }}" class="w-full">
                         {% endif %}
-                        <p class="text-center">{{ calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize }}</p>
                         <p>{{ calendar.place.title ~ ' - ' ~ calendar.place.city }}</p>
                         <p>
                             <svg class="w-4 h-4 text-gray-800 inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

@@ -92,6 +92,11 @@
 							<span class="flex-1 ms-3 whitespace-nowrap">Infos générales du site</span>
 						</a>
 					</li>
+					<li>
+						<a href="{{ path('app_edit_partner_index') }}" class="admin-menu-item flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 group {% if 'partner' in app.request.get('_route')|split('_') %}item-active{% endif %}">
+							<span class="flex-1 ms-3 whitespace-nowrap">Liste des partenaires</span>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</aside>

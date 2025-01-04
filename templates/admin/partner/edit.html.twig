@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier les informations du partenaire{% endblock %}
+
+{% block body %}
+<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg">
+    <div class="mb-5 p-5 pl-0">
+        <h1>Modifier les informations du partenaire {{ partner.title }}</h1>
+    </div>
+
+    {{ include('admin/partner/_form.html.twig') }}
+</div>
+
+{% endblock %}

@@ -1,9 +1,11 @@
 <div class="gallery">
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" data-controller="lightbox">
         {% for gallery in galleries %}
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/' ~ gallery.pictureName) }}" alt="Photo de {{ gallery.project.title }}" data-project="{{ gallery.project.id }}">
-            </div>
+            {# <div> #}
+                <a href="{{ asset('images/' ~ gallery.pictureName) }}">
+                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/' ~ gallery.pictureName) }}" alt="Photo de {{ gallery.project.title }}" data-project="{{ gallery.project.id }}">
+                </a>
+            {# </div> #}
         {% endfor %}
     </div>
 </div>

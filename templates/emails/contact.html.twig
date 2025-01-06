@@ -1,6 +1,7 @@
 {% extends "emails/base.html.twig" %}
 
 {% block emailContent %}
-    <h1>Nouveau message de  {{ contact.email }}</h1>
-    <p>Message : {{ contact.message }}</p>
+    <h1>Nouveau message de  {{ contact.firstname ~ ' ' ~ contact.lastname }}</h1>
+    <p>Coordonnées : {{ contact.phone ~ ' - ' ~ contact.email }}</p>
+    <p>Message : {{ contact.content }}</p>
 {% endblock %}

@@ -10,9 +10,9 @@
             {% for project in projects %}
                 <div class="project">
                     <h2 class="text-center">{{ project.title }}</h2>
-                    <p class="italic text-center">{{ project.style }}</p>
+                    <p class="italic text-center subtitle">{{ project.style }}</p>
                     {% if project.picturename %}
-                        <img src="{{ asset('images/' ~ project.picturename) }}" alt="Photo de {{ project.title }}" class="w-full">
+                        <img src="{{ asset('images/' ~ project.picturename) }}" alt="Photo de {{ project.title }}" class="w-full project-img">
                     {% endif %}
                     <p>{{ project.presentation|raw }}</p>
                     <div class="social-network-container">
@@ -41,7 +41,9 @@
                     </div>
                     <a href="{{ path('app_project_show', {
                         'id': project.id,
-                        'slug': project.slug}) }}">En savoir plus</a>
+                        'slug': project.slug}) }}" class="more">
+                        En savoir plus
+                    </a>
                 </div>
             {% endfor %}
         </article>

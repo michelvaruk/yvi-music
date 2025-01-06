@@ -4,7 +4,7 @@
             <a href="{{ path('app_main') }}" title="retour à la page d'accueil"><img src="{{ asset('images/logo/' ~ siteInfo.getSiteInfo.logoName) }}" alt="Logo de {{ siteInfo.getSiteInfo.title }}" class="h-12 w-12"></a>
             <button data-action="click->main-menu#toggle" id="mobile-menu-btn">
                 <span class="sr-only">Ouvrir le menu principal</span>
-                <svg data-main-menu-target="toggle" class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <svg data-main-menu-target="toggle" class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                 </svg>
                 <svg data-main-menu-target="toggle" class="hidden w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -13,10 +13,10 @@
             </button>
         </div>
         <ul id="main-menu">
-            <li><a href="{{ path('app_project_index')}}">Nos Projets</a></li>
-            <li><a href="{{ path('app_calendar') }}">Agenda</a></li>
-            <li><a href="{{ path('app_gallery') }}">Galerie</a></li>
-            <li><a href="{{ path('app_contact') }}">Nous contacter</a></li>
+            <li><a href="{{ path('app_project_index')}}" {% if 'project' in app.request.get('_route')|split('_') %}class="underline"{% endif %}>Nos projets</a></li>
+            <li><a href="{{ path('app_calendar') }}" {% if 'calendar' in app.request.get('_route')|split('_') %}class="underline"{% endif %}>Agenda</a></li>
+            <li><a href="{{ path('app_gallery') }}" {% if 'gallery' in app.request.get('_route')|split('_') %}class="underline"{% endif %}>Galerie</a></li>
+            <li><a href="{{ path('app_contact') }}" {% if 'contact' in app.request.get('_route')|split('_') %}class="underline"{% endif %}>Nous contacter</a></li>
         </ul>
     </nav>
     <div class="yvi-container title">

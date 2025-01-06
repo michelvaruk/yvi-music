@@ -6,7 +6,6 @@ use App\Entity\Calendar;
 use App\Entity\Place;
 use App\Entity\Project;
 use App\Form\CustomType\ImageFileType;
-use App\Repository\PlaceRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

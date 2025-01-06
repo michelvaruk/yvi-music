@@ -60,7 +60,7 @@ class Project
     /**
      * @var Collection<int, Formula>
      */
-    #[ORM\OneToMany(targetEntity: Formula::class, mappedBy: 'project', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Formula::class, mappedBy: 'project',  orphanRemoval: true)]
     private Collection $formulas;
 
     #[ORM\Column(length: 255, nullable: true)]

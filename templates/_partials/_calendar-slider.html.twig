@@ -1,4 +1,4 @@
-<div data-controller="my-carousel" class="swiper">
+<div data-controller="my-carousel" class="swiper" data-count="{{ calendars|length }}">
     <div class="swiper-wrapper">
         {% for calendar in calendars %}
             <div class="swiper-slide">
@@ -18,6 +18,14 @@
                 </a>
             </div>
         {% endfor %}
+        <div class="swiper-slide">
+                <a href="{{ path('app_contact') }}">
+                    <div class="date">
+                        <h3 class="text-center">Nous contacter</h3>
+                        <p class="text-center italic">Pour demander un rendez-vous ou signaler un manquement...</p>
+                    </div>
+                </a>
+            </div>
     </div>
 <!-- If we need pagination -->
 <div class="swiper-pagination"></div>

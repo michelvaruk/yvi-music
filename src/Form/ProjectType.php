@@ -59,6 +59,7 @@ class ProjectType extends AbstractType
                 'field_name' => 'pdfFile'
             ])
             ->add('members', EntityType::class, [
+                'label' => 'Musiciens',
                 'class' => Member::class,
                 'choice_label' => function(Member $member) {
                     return ucfirst($member->getFirstname()) . ' ' . ucfirst($member->getLastname());

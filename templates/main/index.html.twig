@@ -12,7 +12,10 @@
     } %}
     <main id="main">
         {% if siteInfo.getSiteInfo.pictureName %}
-            <img src="{{ asset('images/' ~ siteInfo.getSiteInfo.pictureName) }}" alt="{{ 'image du ' ~ siteInfo.getSiteInfo.title }}" class="w-full contain">
+            <img src="{{ asset('images/' ~ siteInfo.getSiteInfo.pictureName) }}" alt="{{ 'image du ' ~ siteInfo.getSiteInfo.title }}" class="w-full contain" id="mobile-main-picture">
+            <div class="parallax-test" data-controller="cc-parallax" data-action="scroll@window->cc-parallax#scroll">
+                <div class="parallax" style="background-image: url('{{ asset('images/' ~ siteInfo.getSiteInfo.pictureName) }}');" data-cc-parallax-target="image"></div>
+            </div>
         {% endif %}
         <article class="yvi-container">
             <h2>Nos prochaines dates</h2>
@@ -25,12 +28,12 @@
         <article class="yvi-container">
             <h2>Tous les projets</h2>
             {% for project in projects %}
-                <div class="project">
+                <div class="main-project">
                     <h3 class="text-center">{{ project.title }}</h3>
                     <p class="italic text-center">{{ project.style }}</p>
-                    {% if project.picturename %}
+                    {# {% if project.picturename %}
                         <img src="{{ asset('images/' ~ project.picturename) }}" alt="Photo de {{ project.title }}" class="w-full">
-                    {% endif %}
+                    {% endif %} #}
                     <p>{{ project.presentation|raw }}</p>
                     <div class="social-network-container">
                         {% if project.youtube %}

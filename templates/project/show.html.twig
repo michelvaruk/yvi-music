@@ -17,10 +17,13 @@
         'subtitle': project.style
     } %}
     <main id="main">
+        {% if project.pictureName %}
+            {% include "_partials/_main-picture.html.twig" with {
+                path: project.pictureName,
+                title: project.title
+            } %}
+        {% endif %}
         <article class="yvi-container">
-            {% if project.pictureName %}
-                <img src="{{ asset('images/' ~ project.pictureName) }}" alt="Photo de  {{ project.title }}">
-            {% endif %}
             <section class="project-description mb-24">
                 <div class="mb-12">{{ project.presentation|raw }}</div>
                 <h3>Nous contacter</h3>
@@ -59,10 +62,10 @@
                 <h2>Les musiciens de {{ project.title }}</h2>
                 {% for member in project.members %}
                     {% if member.active %}
-                        <div class="member" data-controller="display-text">
+                        <div class="member group" data-controller="display-text">
                             <h3>{{ member.firstname|capitalize }}</h3>
                             {% if member.pictureName %}
-                                <img src="{{ asset('images/' ~ member.pictureName) }}" alt="Photo de {{ member.firstname ~ ' ' ~ member.lastname}}">
+                                <img src="{{ asset('images/' ~ member.pictureName) }}" alt="Photo de {{ member.firstname ~ ' ' ~ member.lastname}}" class="member-picture">
                             {% endif %}
                             <p><span class="underline">Ses instruments :</span> {{ member.instruments }}</p>
                             <div class="bio" data-display-text-target="text">{{ member.bio|raw }}</div>
@@ -79,7 +82,25 @@
                 <h2>Les prochaines dates de {{ project.title }}</h2>
                 {% include "_partials/_calendar-slider.html.twig" %}
             </section>
+            <section class="pro-section mb-24">
+                <h2>Pour les pros</h2>
+                <div class="formulas">
+                    {% for formula in project.formulas|sort((a, b) => a.position <=> b.position) %}
+                        {% if formula.active %}
+                            <div class="formula">
+                                <h3>{{ formula.title }}</h3>
+                                <div>{{ formula.description }}</div>
+                                <p>Type de concert : {{ formula.type }}</p>
+                                <p>Format : {{ formula.format }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <h3>Documentation technique</h3>
+                <a href="{{ asset('fichiers/' ~ project.fileName) }}" class="underline" target="_blank">Téléchargez notre documentation technique</a>
+            </section>
             <section class="youtube-links mb-24">
+                <h2>{{ project.title }} en vidéo{{ project.youtubelinks|length > 1 ? 's' : '' }}</h2>
                 {% for link in project.youtubelinks %}
                     <iframe src="https://www.youtube-nocookie.com/embed/{{ link.url }}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 {% endfor %}

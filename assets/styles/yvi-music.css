@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Galada&display=swap');
 
 :root {
+  --black: #020107;
   --gold: linear-gradient(90deg, #FF8008, #FFC837);
-  --secondary: #dae6ff;
-  --alternative: #ffdecd;
+  --secondary: #ECC58A;
+  --alternative: #c3cdf3;
   --grey: #1e1e1e;
 }
 
+/* clearfix */
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 #front {
-  background-color: black;
+  background-color: var(--black);
   color: #FFF;
 }
 
@@ -47,7 +54,6 @@ header .title {
 header .title p {
   font-style: italic;
   text-align: center;
-  font-size: .8em;
 }
 
 #main article {
@@ -60,7 +66,7 @@ header .title p {
 }
 
 #front footer {
-  padding: 5%;
+  padding: 5% 5% 1em;
   background-color: var(--grey);
   margin-top: 4em;
 }
@@ -77,9 +83,9 @@ header .title p {
   padding-bottom: 1em;
 }
 
-.date, .member, .main-project {
+.date, .member, .main-project, .formula {
   border-radius: 1em;
-  color: black;
+  color: var(--black);
   padding: 1em;
   margin-bottom: 1em;
 }
@@ -87,7 +93,7 @@ header .title p {
 .date {
   background: var(--gold);
   transition: all .2s ease-in-out;
-  height: 13em;
+  min-height: 11em;
 }
 
 .date:hover {
@@ -97,16 +103,25 @@ header .title p {
 }
 
 .member:nth-child(odd),
-.main-project:nth-child(odd) {
+.main-project:nth-child(odd),
+.formula:nth-child(odd) {
   background-color: var(--secondary);
 }
 
 .member:nth-child(even),
-.main-project:nth-child(even) {
+.main-project:nth-child(even),
+.formula:nth-child(even) {
   background-color: var(--alternative);
 }
 
-.member img {
+.main-project-picture {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.member-picture {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: contain;
@@ -143,7 +158,7 @@ header .title p {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: black;
+  background-color: var(--black);
   z-index: 1000;
 }
 
@@ -156,6 +171,10 @@ header .title p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.formula {
+  text-align: center;
 }
 
 .footer-sitemap nav {
@@ -211,7 +230,7 @@ header .title p {
 }
 
 .bio.display-text {
-  max-height: 100em;
+  max-height: 100rem;
   transition: all .6s ease-in-out;
 }
 
@@ -222,6 +241,24 @@ svg[data-action="click->display-text#toggle"] {
 svg.display-text {
   transform: rotate(180deg);
   transition: all .6s ease-in-out;
+}
+
+.youtube-links iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1em;
+}
+
+.calendar-picture {
+  max-height: 30em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#front form {
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #contact .mb-6 {
@@ -235,19 +272,21 @@ svg.display-text {
 #contact textarea {
   border-radius: .5em;
   min-height: 10em;
-  color: black;
+  color: var(--black);
   opacity: .8;
 }
 
 #contact input {
-  background-color: black;
+  background-color: var(--black);
   border: none;
   border-bottom: solid 1px rgba(255, 255, 255, .6);
 }
 
 form[name="contact"] button {
-  color: black;
+  color: var(--black);
   background: var(--gold);
+  font-size: 1.2rem;
+  height: 2.5em;
 }
 
 #contact [type="text"]:focus,
@@ -260,8 +299,10 @@ form[name="contact"] button {
 }
 
 @media screen and (min-width: 640px) {
-
-
+  #front h1 {
+    font-size: 2.5rem;
+  }
+  
   #front nav {
     display: flex;
     align-items: center;
@@ -277,7 +318,7 @@ form[name="contact"] button {
     display: none;
   }
 
-  #front li:hover {
+  #front header li:hover {
     background: var(--gold);
     -webkit-background-clip: text;
     background-clip: text;
@@ -299,7 +340,94 @@ form[name="contact"] button {
     background-size: cover; /* L'image prendra 100% de l'espace, quitte à la crop */
     background-position: center; /* Centre la position de l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
-    height: 30vw;
+    height: 32vw;
+  }
+
+  #main article:not(:last-child) {
+    margin-top: 8em;
+    margin-bottom: 8em;
+  }
+
+  .index-date {
+    margin-bottom: 8em;
+  }
+  .index-date:last-child {
+    margin-bottom: 2em;
+  }
+  .main-project,
+  .member,
+  .index-date {
+    max-width: 60em;
+  }
+
+  .main-project:nth-child(odd),
+  .member:nth-child(odd),
+  .index-date:nth-child(odd) {
+    margin-left: auto;
+  } 
+
+  .main-project-picture,
+  .member-picture,
+  .index-date img {
+    width: calc(50% - 2em);
+    float: left;
+    margin-right: 2em;
+  }
+
+  .main-project:nth-child(odd) .main-project-picture,
+  .member:nth-child(odd) .member-picture,
+  .index-date:nth-child(odd) img {
+    float: right;
+    margin-right: 0;
+    margin-left: 2em;
+  }
+
+  .project-description {
+    text-align: center;
+  }
+
+  .project-description .social-network-container {
+    justify-content: center;
+  }
+
+  #front .calendar-go {
+    text-align: left;
+  }
+
+  #front footer h2 {
+    display: none;
+  }
+
+  #front footer nav ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  #front footer nav > ul > li > a {
+    font-family: 'Galada', serif;
+  }
+
+  .bio {
+    max-height: fit-content;
+    display: inline;
+    text-align: justify;
+  }
+
+  .member svg {
+    display: none;
+  }
+
+  .partners {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    align-items: center;
+  }
+
+  .partner-link {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 @media screen and (min-width: 1080px) {
@@ -321,5 +449,37 @@ form[name="contact"] button {
   #main-menu {
     gap: 2em;
     font-size: 1.6rem;
+  }
+
+  .main-project {
+    padding: 2em;
+  }
+
+  .formulas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .formula {
+    width: calc(50% - .5rem);
+  }
+
+  .youtube-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .youtube-links h2 {
+    width: 100%;
+  }
+
+  .youtube-links iframe:not(:first-of-type) {
+    width: calc(50% - .5rem);
+  }
+
+  footer nav > ul > li > a {
+    font-size: 1.6em;
   }
 }

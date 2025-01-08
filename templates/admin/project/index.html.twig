@@ -89,7 +89,8 @@
                                 {% for formula in project.formulas|sort((a, b) => a.position <=> b.position) %}
 									<div class="flex gap-2 mb-2">
 										{% include "_partials/_position.html.twig" %}
-										<a href="{{ path('app_edit_formula_edit', {'id': formula.id}) }}">{{ formula.title }}</a>
+										<a href="{{ path('app_edit_formula_edit', {'id': formula.id}) }}" {% if formula.active == false %}class="text-red-600" title="formule désactivée"{% endif %}
+										>{{ formula.title }}</a>
 									</div>
                                 {% else %}
                                     <p>Aucune formule proposée pour ce projet.</p>

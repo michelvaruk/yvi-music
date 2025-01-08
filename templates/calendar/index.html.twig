@@ -1,29 +1,31 @@
 {% extends "base.html.twig" %}
 {% block body %}
     {% include "_partials/_header.html.twig" with {
-        'title': 'Découvrir Yvi-music en live',
+        'title': 'Découvrir Yvi-music en live',
         'subtitle': '>>> Ajouter un sous-titre pour cette page <<<'
     } %}
     <main id="main">
         <article class="yvi-container">
             {% for calendar in calendars %}
-                <p class="text-center">{{ calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize }}</p>
-                <a href="{{ path('app_calendar_show', {'id': calendar.id, 'slug': calendar.slug}) }}" class="mb-4">
-                    <div class="date">
-                        <h3 class="text-center">{{ calendar.title }}</h3>
-                        {% if calendar.picturename %}
-                            <img src="{{ asset('images/' ~ calendar.picturename) }}" alt="Affiche du concert {{ calendar.title }}" class="w-full">
-                        {% endif %}
-                        <p>{{ calendar.place.title ~ ' - ' ~ calendar.place.city }}</p>
-                        <p>
-                            <svg class="w-4 h-4 text-gray-800 inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd"/>
-                            </svg>
-                            {{ calendar.project.title }}
-                        </p>
-                        <p class="italic">{{ calendar.type }}</p>
-                    </div>
-                </a>
+                <div class="index-date">
+                    <p class="text-center mb-4">{{ calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize }}</p>
+                    <a href="{{ path('app_calendar_show', {'id': calendar.id, 'slug': calendar.slug}) }}" class="mb-4">
+                        <div class="date group">
+                            <h3 class="text-center">{{ calendar.title }}</h3>
+                            {% if calendar.picturename %}
+                                <img src="{{ asset('images/' ~ calendar.picturename) }}" alt="Affiche du concert {{ calendar.title }}" class="w-full">
+                            {% endif %}
+                            <p>{{ calendar.place.title ~ ' - ' ~ calendar.place.city }}</p>
+                            <p>
+                                <svg class="w-4 h-4 text-gray-800 inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd"/>
+                                </svg>
+                                {{ calendar.project.title }}
+                            </p>
+                            <p class="italic">{{ calendar.type }}</p>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
         </article>
     </main>

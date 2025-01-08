@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Member;
 use App\Entity\Project;
-use App\Entity\YoutubeLink;
 use App\Form\CustomType\ImageFileType;
 use App\Form\CustomType\QuillTextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ProjectType extends AbstractType
 {
@@ -54,9 +54,12 @@ class ProjectType extends AbstractType
                 'label' => 'Image de présentation du projet',
                 'field_name' => 'pictureFile'
             ])
-            ->add('pdfFile', ImageFileType::class, [
+            ->add('pdfFile', VichFileType::class, [
                 'label' => 'Documentation technique',
-                'field_name' => 'pdfFile'
+                'required' => false,
+                'allow_delete' => true,
+                'delete_label' => 'Supprimer le fichier',
+                'download_label' => 'Télécharger',
             ])
             ->add('members', EntityType::class, [
                 'label' => 'Musiciens',

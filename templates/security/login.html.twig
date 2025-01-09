@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': 'Connexion',
+        'subtitle': 'Accès à l\'administration du site, ne jamais partager l\'url de cette page !'
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            <form name="login" method="post">
+                <div id="login">
+                    {% if error %}
+                        <div class="font-bold text-red-600 underline mb-6">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            Vous êtes connecté(e) en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
+                        </div>
+                    {% endif %}
+                    <div class="mb-6">
+                        <label for="username" class="block text-gray-800 required">Email</label>
+                        <input type="email" value="{{ last_username }}" name="_username" id="username" class="mt-1 w-full" autocomplete="email" required autofocus>
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-800 required">Mot de passe</label>
+                        <input type="password" name="_password" id="password" class="mt-1 w-full" autocomplete="current-password" required>
+
+                        <input type="hidden" name="_csrf_token"
+                            value="{{ csrf_token('authenticate') }}"
+                        >
+                    </div>
+                    <div class="checkbox mb-6">
+                        <input type="checkbox" name="_remember_me" id="_remember_me">
+                        <label for="_remember_me">Se souvenir de moi</label>
+                    </div>
+
+                </div>
+                <button class="w-full font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4" type="submit">
+                    Me connecter
+                </button>
+                <p class="text-right"><a href="{{ path('app_forgot_password_request')}}" class="underline">Mot de passe oublié ?</a></p>
+            </form>
+        </article>
+    </main>
+{% endblock %}

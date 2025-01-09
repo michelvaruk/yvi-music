@@ -261,28 +261,41 @@ svg.display-text {
   margin-right: auto;
 }
 
-#contact .mb-6 {
+#contact .mb-6,
+#login .mb-6,
+#reset_password_request_form .mb-6,
+#change_password_form .mb-6 {
   margin-bottom: 2em;
 }
 
-#contact label {
+#contact label,
+#login label,
+#reset_password_request_form label,
+#change_password_form label {
   color: #FFF;
 }
 
-#contact textarea {
+#contact textarea,
+#login textarea {
   border-radius: .5em;
   min-height: 10em;
   color: var(--black);
   opacity: .8;
 }
 
-#contact input {
+#contact input,
+#login input:not([type="checkbox"]),
+#reset_password_request_form input,
+#change_password_form input {
   background-color: var(--black);
   border: none;
   border-bottom: solid 1px rgba(255, 255, 255, .6);
 }
 
-form[name="contact"] button {
+form[name="contact"] button,
+form[name="login"] button,
+form[name="reset_password_request_form"] button,
+form[name="change_password_form"] button {
   color: var(--black);
   background: var(--gold);
   font-size: 1.2rem;
@@ -290,11 +303,16 @@ form[name="contact"] button {
 }
 
 #contact [type="text"]:focus,
-#contact [type="email"]:focus {
+#contact [type="email"]:focus,
+#login [type="email"]:focus,
+#reset_password_request_form [type="email"]:focus,
+#change_password_form [type="email"]:focus {
   --tw-ring-color: rgba(255, 255, 255, 0)
 }
 
-#contact input:focus {
+#contact input:focus,
+#login input:focus
+#change_password_form input:focus {
   border-bottom: solid 1px rgba(255, 255, 255, 1);
 }
 

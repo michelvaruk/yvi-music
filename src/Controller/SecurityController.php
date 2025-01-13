@@ -12,6 +12,10 @@ class SecurityController extends AbstractController
     #[Route(path: '/connexion-yvi', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_edit_calendar_index');
+        }
+        
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 

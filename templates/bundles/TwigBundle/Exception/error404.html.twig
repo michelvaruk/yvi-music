@@ -1,0 +1,3 @@
+{% extends "bundles/TwigBundle/Exception/error.html.twig" %}
+{% block status %}{{ status_code }}{% endblock %}
+{% block error %}{{ status_text }}{% endblock %}

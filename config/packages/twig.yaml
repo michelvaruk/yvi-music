@@ -5,6 +5,7 @@ twig:
 
     globals:
         siteInfo: '@App\Twig\Extension\SiteExtension'
+        siteBaseUrl: '%env(SITE_BASE_URL)%'
     paths:
         '%kernel.project_dir%/public/images': images
 

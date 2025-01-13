@@ -118,4 +118,13 @@ return [
     'lightgallery' => [
         'version' => '2.7.2',
     ],
+    '@stimulus-components/sortable' => [
+        'version' => '5.0.1',
+    ],
+    'sortablejs' => [
+        'version' => '1.15.6',
+    ],
+    '@rails/request.js' => [
+        'version' => '0.0.8',
+    ],
 ];

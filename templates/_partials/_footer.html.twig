@@ -24,17 +24,18 @@
     <div class="partners">
         <h2>Nos partenaires</h2>
         {% for partner in siteInfo.getPartners %}
-            <div class="relative partner-link">
-                {% if partner.url %}
-                    <a href="{{ partner.url }}" target="_blank"><img src="{{ asset('images/' ~ partner.pictureName)}}" alt="Logo de {{ partner.title }}" class="h-16 relative"></a>
-                {% else %}
-                    <img src="{{ asset('images/' ~ partner.pictureName)}}" alt="Logo de {{ partner.title }}" class="h-16 relative">
-                {% endif %}
-                <div class="partner-title">
-                    <p>{{ partner.title }}</p>
+            <a href="{{ partner.url }}" target="_blank">
+                <div class="relative partner-link">
+                    {% if partner.url %}
+                        <img src="{{ asset('images/' ~ partner.pictureName)}}" alt="Logo de {{ partner.title }}" class="h-16 relative">
+                    {% else %}
+                        <img src="{{ asset('images/' ~ partner.pictureName)}}" alt="Logo de {{ partner.title }}" class="h-16 relative">
+                    {% endif %}
+                    <div class="partner-title">
+                        <p>{{ partner.title }}</p>
+                    </div>
                 </div>
-            </div>
-            
+            </a>
         {% endfor %}
     </div>
     <div class="mt-4 text-center text-sm">

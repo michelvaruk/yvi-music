@@ -86,15 +86,20 @@
                                 {% endfor %}
                             </td>
 							<td class="px-6 py-4">
-                                {% for formula in project.formulas|sort((a, b) => a.position <=> b.position) %}
-									<div class="flex gap-2 mb-2">
-										{% include "_partials/_position.html.twig" %}
-										<a href="{{ path('app_edit_formula_edit', {'id': formula.id}) }}" {% if formula.active == false %}class="text-red-600" title="formule désactivée"{% endif %}
-										>{{ formula.title }}</a>
-									</div>
-                                {% else %}
-                                    <p>Aucune formule proposée pour ce projet.</p>
-                                {% endfor %}
+								<ul data-controller="cc-sortable">
+									{% for formula in project.formulas|sort((a, b) => a.position <=> b.position) %}
+										{# <div class="flex gap-2 mb-2">
+											{% include "_partials/_position.html.twig" %}
+											<a href="{{ path('app_edit_formula_edit', {'id': formula.id}) }}" {% if formula.active == false %}class="text-red-600" title="formule désactivée"{% endif %}
+											>{{ formula.title }}</a>
+										</div> #}
+										
+											<li class="border-red-400 mb-4" cc-sortable-target="formula" data-formula="{{ formula.id }}">{{ formula.title }}</li>
+										
+									{% else %}
+										<p>Aucune formule proposée pour ce projet.</p>
+									{% endfor %}
+								</ul>
 								<a href="{{ path('app_edit_formula_new', {'id': project.id}) }}" class="text-green-600 underline">Ajouter une formule</a>
                             </td>
 							<td class="px-6 py-4">

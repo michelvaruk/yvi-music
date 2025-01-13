@@ -55,6 +55,23 @@ class CalendarController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/switch', name:'app_edit_calendar_switch', methods: ['POST'])]
+    public function switch(Calendar $calendar, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('switch' . $calendar->getId(), $request->getPayload()->get('_token'))) {
+            if ($calendar->isActive()) {
+                $calendar->setActive(false);
+                $this->addFlash('success', 'Date ' . $calendar->getTitle() . ' désactivée.');
+            } else {
+                $calendar->setActive(true);
+                $this->addFlash('success', 'Date ' . $calendar->getTitle() . ' activée.');
+            }
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_edit_calendar_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}', name: 'app_edit_calendar_delete', methods: ['POST'])]
     public function delete(Request $request, Calendar $calendar, EntityManagerInterface $entityManager,): Response
     {

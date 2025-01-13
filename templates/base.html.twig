@@ -6,10 +6,6 @@
         {% include "_partials/_head.html.twig" %}
         {% block stylesheets %}
         {% endblock %}
-
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
     </head>
     <body id="front">
         {% block body %}{% endblock %}

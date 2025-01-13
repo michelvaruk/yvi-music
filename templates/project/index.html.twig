@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': 'Tous les projets de Yvi',
+        'subtitle': ''
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            <div></div>
+            {% include "_partials/_projects.html.twig" %}
+        </article>
+    </main>
+
+{% endblock %}

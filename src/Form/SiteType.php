@@ -29,7 +29,9 @@ class SiteType extends AbstractType
             ->add('phone', TextType::class, [
                 'label' => 'N° de téléphone'
             ])
-            ->add('description', QuillTextareaType::class)
+            ->add('description', QuillTextareaType::class, [
+                'label' => 'Description'
+            ])
         ;
     }
 

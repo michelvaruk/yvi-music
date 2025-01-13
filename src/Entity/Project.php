@@ -42,7 +42,7 @@ class Project
     /**
      * @var Collection<int, Calendar>
      */
-    #[ORM\OneToMany(targetEntity: Calendar::class, mappedBy: 'project', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Calendar::class, mappedBy: 'project', orphanRemoval: true, fetch: 'EAGER')]
     private Collection $calendars;
 
     /**
@@ -54,14 +54,29 @@ class Project
     /**
      * @var Collection<int, Gallery>
      */
-    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'project')]
+    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'project', cascade: ['persist'])]
     private Collection $galleries;
 
     /**
      * @var Collection<int, Formula>
      */
-    #[ORM\OneToMany(targetEntity: Formula::class, mappedBy: 'project', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Formula::class, mappedBy: 'project',  orphanRemoval: true)]
     private Collection $formulas;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $facebook = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $youtube = null;
+
+    /**
+     * @var Collection<int, YoutubeLink>
+     */
+    #[ORM\OneToMany(targetEntity: YoutubeLink::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $youtubeLinks;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $instagram = null;
 
     public function __construct()
     {
@@ -69,6 +84,7 @@ class Project
         $this->members = new ArrayCollection();
         $this->galleries = new ArrayCollection();
         $this->formulas = new ArrayCollection();
+        $this->youtubeLinks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -213,6 +229,72 @@ class Project
                 $formula->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
+
+    public function setFacebook(?string $facebook): static
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    public function getYoutube(): ?string
+    {
+        return $this->youtube;
+    }
+
+    public function setYoutube(?string $youtube): static
+    {
+        $this->youtube = $youtube;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, YoutubeLink>
+     */
+    public function getYoutubeLinks(): Collection
+    {
+        return $this->youtubeLinks;
+    }
+
+    public function addYoutubeLink(YoutubeLink $youtubeLink): static
+    {
+        if (!$this->youtubeLinks->contains($youtubeLink)) {
+            $this->youtubeLinks->add($youtubeLink);
+            $youtubeLink->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeYoutubeLink(YoutubeLink $youtubeLink): static
+    {
+        if ($this->youtubeLinks->removeElement($youtubeLink)) {
+            // set the owning side to null (unless already changed)
+            if ($youtubeLink->getProject() === $this) {
+                $youtubeLink->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
+
+    public function setInstagram(?string $instagram): static
+    {
+        $this->instagram = $instagram;
 
         return $this;
     }

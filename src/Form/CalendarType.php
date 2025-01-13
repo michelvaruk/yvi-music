@@ -8,6 +8,7 @@ use App\Entity\Project;
 use App\Form\CustomType\ImageFileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +27,7 @@ class CalendarType extends AbstractType
                 'label' => 'Date et heure',
             ])
             ->add('type', TextType::class, [
-                'label' => 'Type de cocert',
+                'label' => 'Type de concert',
             ])
             ->add('url', UrlType::class, [
                 'label' => 'Url de l\'événement',
@@ -43,10 +44,15 @@ class CalendarType extends AbstractType
             ])
             ->add('place', EntityType::class, [
                 'class' => Place::class,
-                'choice_label' => 'title',
+                'choice_label' => function(?Place $place) {
+                    return $place->getTitle() . ' - ' . $place->getCity();
+                },
                 'label' => 'Lieu',
             ])
-            ->add('active')
+            ->add('active', CheckboxType::class, [
+                'label' => 'Activer',
+                'required' => false,
+            ])
         ;
     }
 

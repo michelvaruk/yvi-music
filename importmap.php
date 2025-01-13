@@ -106,4 +106,25 @@ return [
     'quill-resize-image' => [
         'version' => '1.0.5',
     ],
+    '@stimulus-components/carousel' => [
+        'version' => '6.0.0',
+    ],
+    'swiper/bundle' => [
+        'version' => '11.1.0',
+    ],
+    '@stimulus-components/lightbox' => [
+        'version' => '4.0.0',
+    ],
+    'lightgallery' => [
+        'version' => '2.7.2',
+    ],
+    '@stimulus-components/sortable' => [
+        'version' => '5.0.1',
+    ],
+    'sortablejs' => [
+        'version' => '1.15.6',
+    ],
+    '@rails/request.js' => [
+        'version' => '0.0.8',
+    ],
 ];

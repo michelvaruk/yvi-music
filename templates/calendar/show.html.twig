@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': calendar.project.title,
+        'subtitle': calendar.place.city ~ ' - ' ~ calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            <h2>{{ calendar.title }}</h2>
+            {% if calendar.pictureName %}
+                <img src="{{ asset('images/' ~ calendar.pictureName) }}" alt="Affiche du concert {{ calendar.title }}" class="calendar-picture">
+            {% endif %}
+            <p class="text-center">{{ calendar.project.title }}</p>
+            <p class="text-center"><span class="underline">Type de concert :</span> {{ calendar.type }}</p>
+            {% if calendar.url %}
+                <p class="text-center">Pour plus de renseignements : {{ calendar.url }}</p>
+            {% endif %}
+            <section class="py-8">
+                <h3 class="calendar-go">Se rendre au concert</h3>
+                <address>
+                    {{ calendar.place.title }}</br>
+                    {{ calendar.place.description|raw }}
+                    {{ calendar.place.address }}</br>
+                    {{ calendar.place.zipcode ~ ' ' ~ calendar.place.city }}</br>
+                    {% if calendar.place.phone %}
+                        <a href="tel:{{ calendar.place.phone }}">{{ calendar.place.phone }}</a></br>
+                    {% endif %}
+                    {% if calendar.place.email %}
+                        <a href="mailto:{{ calendar.place.email }}">{{ calendar.place.email }}</a>
+                    {% endif %}
+                </address>
+            </section>
+        </article>
+        
+
+    </main>
+
+{% endblock %}

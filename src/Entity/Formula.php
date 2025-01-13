@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Trait\ActiveTrait;
+use App\Entity\Trait\DescriptionTrait;
 use App\Entity\Trait\PositionTrait;
 use App\Entity\Trait\TitleTrait;
 use App\Repository\FormulaRepository;
@@ -14,6 +15,7 @@ class Formula
     use ActiveTrait;
     use TitleTrait;
     use PositionTrait;
+    use DescriptionTrait;
     
     #[ORM\Id]
     #[ORM\GeneratedValue]

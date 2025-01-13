@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': 'Contacter Yvi',
+        'subtitle': 'Pour toute question sur les différents projets'
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            {% form_theme form 'tailwind_2_layout.html.twig' %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="w-full font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">Envoyer</button>
+                {{ form_end(form) }}
+        </article>
+    </main>
+
+{% endblock %}

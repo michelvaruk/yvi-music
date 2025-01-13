@@ -1,4 +1,10 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+{% endblock %}
 {% block body %}
     {% include "_partials/_header.html.twig" with {
         'title': siteInfo.getSiteInfo.title,
@@ -6,32 +12,22 @@
     } %}
     <main id="main">
         {% if siteInfo.getSiteInfo.pictureName %}
-            <img src="{{ asset('images/' ~ siteInfo.getSiteInfo.pictureName) }}" alt="{{ 'image du ' ~ siteInfo.getSiteInfo.title }}" class="w-full contain">
+            {% include "_partials/_main-picture.html.twig" with {
+                path: siteInfo.getSiteInfo.pictureName,
+                title: siteInfo.getSiteInfo.title
+            } %}
         {% endif %}
-        <article class="yvi-container">
+        <article class="yvi-container" id="future-dates">
             <h2>Nos prochaines dates</h2>
-            {% for calendar in calendars %}
-                <a href="#">
-                    <div class="date">
-                        <h3 class="text-center">{{ calendar.title|upper }}</h3>
-                        {% if calendar.picturename %}
-                            <img src="{{ asset('images/' ~ calendar.picturename) }}" alt="Affiche du concert {{ calendar.title }}" class="w-full">
-                        {% endif %}
-                        <p class="text-center">{{ calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize }}</p>
-                        <p>{{ calendar.place.title ~ ' - ' ~ calendar.place.city }}</p>
-                        <p>
-                            <svg class="w-4 h-4 text-gray-800 inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd"/>
-                            </svg>
-                            {{ calendar.project.title }}
-                        </p>
-                        <p class="italic">{{ calendar.type }}</p>
-                    </div>
-                </a>
-            {% endfor %}
+                {% include "_partials/_calendar-slider.html.twig" %}
+            </div>
             <div class="more">
                 <a href="{{ path('app_calendar') }}">Découvrir plus de dates</a>
             </div>
+        </article>
+        <article class="yvi-container">
+            <h2>Tous les projets</h2>
+            {% include "_partials/_projects.html.twig" %}
         </article>
     </main>
 

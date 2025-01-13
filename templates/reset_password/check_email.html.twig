@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email de nouveau mot de passe envoyé{% endblock %}
+
+{% block body %}
+    {% include "_partials/_header.html.twig" with {
+        'title': 'Nouveau mot de passe',
+        'subtitle': 'Email de nouveau mot de passe envoyé'
+    } %}
+    <main id="main">
+        <article class="yvi-container">
+            <p>
+                Si un compte existe bien avec votre email, nous venons de lui envoyer un lien qui vous permettra d'enregistrer votre nouveau mot de passe. Ce lien expirera dans  {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+            </p>
+            <p>Si vous ne recevez aucun email, veuillez vérifier vos spams ou <a href="{{ path('app_forgot_password_request') }}">ré-essayez</a>.</p>
+        </article>
+    </main>
+{% endblock %}

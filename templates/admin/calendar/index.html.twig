@@ -27,6 +27,7 @@
 						<th scope="col" class="px-6 py-3">Date</th>
                         <th scope="col" class="px-6 py-3">Lien vers l'évènement</th>
 						<th scope="col" class="px-6 py-3">Projet</th>
+						<th scope="col" class="px-6 py-3">Actif</th>
                         <th scope="col" class="px-6 py-3">
                             <span class="sr-only">Actions</span>
                         </th>
@@ -45,7 +46,11 @@
 							<td class="px-6 py-4">{{ calendar.date|date("m/d/Y H:i", "Europe/Paris") }}</td>
                             <td class="px-6 py-4">{{ calendar.url }}</td>
 							<td class="px-6 py-4">{{ calendar.project.title }}</td>
-                            <td class="px-6 py-4 text-right whitespace-nowrap">
+                            <td class="px-6 py-4">{% include "_partials/_switch.html.twig" with {
+								entity: calendar,
+								path: 'app_edit_calendar_switch'
+							}%}</td>
+							<td class="px-6 py-4 text-right whitespace-nowrap">
                                 <a href="{{ path('app_edit_calendar_edit', {'id': calendar.id}) }}">Modifier</a><br>
                                 {{ include('admin/calendar/_delete.html.twig', { className: 'font-medium text-red-600 hover:underline'}) }}
                             </td>

@@ -1,0 +1,4 @@
+<img src="{{ asset('images/' ~ path) }}" alt="{{ 'image du ' ~ title }}" class="w-full contain" id="mobile-main-picture">
+<div class="parallax-test" data-controller="cc-parallax" data-action="scroll@window->cc-parallax#scroll">
+    <div class="parallax" style="background-image: url('{{ asset('images/' ~ path) }}');" data-cc-parallax-target="image"></div>
+</div>

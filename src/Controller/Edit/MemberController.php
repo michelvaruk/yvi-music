@@ -55,6 +55,23 @@ class MemberController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/switch', name:'app_edit_member_switch', methods: ['POST'])]
+    public function switch(Member $member, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('switch' . $member->getId(), $request->getPayload()->get('_token'))) {
+            if ($member->isActive()) {
+                $member->setActive(false);
+                $this->addFlash('success', 'Le musicien ' . $member->getFirstname() . ' ' . $member->getLastname() . ' a été désactivé.');
+            } else {
+                $member->setActive(true);
+                $this->addFlash('success', 'Le musicien ' . $member->getFirstname() . ' ' . $member->getLastname() . ' a été activé.');
+            }
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_edit_member_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}', name: 'app_edit_member_delete', methods: ['POST'])]
     public function delete(Request $request, Member $member, EntityManagerInterface $entityManager,): Response
     {

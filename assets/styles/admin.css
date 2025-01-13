@@ -9,3 +9,67 @@
   background-color: rgb(17 24 39);
   color: #FFF;
 }
+
+.cc_active,
+.not-active {
+  display: block;
+  width: .5rem;
+  height: .5rem;
+  border-radius: .5rem;
+}
+
+.not-active {
+  background-color: rgb(224 36 36);
+}
+
+.cc_active {
+  background-color: rgb(5 122 85);
+}
+
+.vich-image img {
+  margin-top: 1em;
+  max-height: 8em;
+}
+
+@media (min-width: 1080px) {
+  #project {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
+  #project>div {
+    width: calc(50% - .5em);
+  }
+
+  #admin .collection-form-container,
+  #project>div:nth-child(3) {
+    width: 100%;
+  }
+
+  #project>div:nth-child(4),
+  #project>div:nth-child(5),
+  #project>div:nth-child(6),
+  #project>div:nth-child(7),
+  #project>div:nth-child(8),
+  #project>div:nth-child(9) {
+    width: 30%;
+  }
+
+
+  .collection-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+    align-items: center;
+  }
+  .collection-form::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8), rgba(0, 0, 0, 0));
+    width: 90%;
+    margin: 2em auto
+  }
+}

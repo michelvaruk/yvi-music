@@ -89,7 +89,7 @@
                         {% if formula.active %}
                             <div class="formula">
                                 <h3>{{ formula.title }}</h3>
-                                <div>{{ formula.description }}</div>
+                                <div>{{ formula.description|raw }}</div>
                                 <p>Type de concert : {{ formula.type }}</p>
                                 <p>Format : {{ formula.format }}</p>
                             </div>

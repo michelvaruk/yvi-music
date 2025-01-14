@@ -1,4 +1,5 @@
 {% extends "base.html.twig" %}
+{% block title %}{{ calendar.place.city ~ ' - ' ~ calendar.date|format_datetime('full', 'short', locale: 'fr')|capitalize }}{% endblock %}
 {% block body %}
     {% include "_partials/_header.html.twig" with {
         'title': calendar.project.title,

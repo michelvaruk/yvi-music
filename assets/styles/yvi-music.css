@@ -295,7 +295,8 @@ svg.display-text {
 form[name="contact"] button,
 form[name="login"] button,
 form[name="reset_password_request_form"] button,
-form[name="change_password_form"] button {
+form[name="change_password_form"] button,
+.yvi-btn {
   color: var(--black);
   background: var(--gold);
   font-size: 1.2rem;

@@ -43,7 +43,6 @@ class YoutubeLink
             $this->url = $link[1];
         } else {
             $short = explode("/shorts/", $youtubeLink);
-            dd($short);
             if (count($short) > 1) {
                 $this->url = $short[1];
             } else {

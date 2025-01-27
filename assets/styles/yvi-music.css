@@ -303,6 +303,11 @@ form[name="change_password_form"] button,
   height: 2.5em;
 }
 
+.yvi-btn {
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+}
+
 #contact [type="text"]:focus,
 #contact [type="email"]:focus,
 #login [type="email"]:focus,

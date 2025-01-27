@@ -27,6 +27,7 @@ class ImageFileType extends AbstractType
                         'image/tiff',
                         'image/bmp',
                     ],
+                    'maxSize' => '4Mi',
                     'mimeTypesMessage' => 'Merci de télécharger un fichier image ou photo valide.',
                 ])
             ])

@@ -80,11 +80,14 @@
                 {% endfor %}
             </section>
             <section class="project-calendars mb-24">
-                <h2>Les prochaines dates de {{ project.title }}</h2>
-                {% include "_partials/_calendar-slider.html.twig" %}
+                {% if calendars|length > 0 %}
+                    <h2>Les prochaines dates de {{ project.title }}</h2>
+                    {% include "_partials/_calendar-slider.html.twig" %}
+                {% endif %}
             </section>
             <section class="pro-section mb-24">
                 <h2>Pour les pros</h2>
+                {% if project.formulas|length > 0 %}
                 <div class="formulas">
                     {% for formula in project.formulas|sort((a, b) => a.position <=> b.position) %}
                         {% if formula.active %}
@@ -97,8 +100,11 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <h3>Documentation technique</h3>
-                <a href="{{ asset('fichiers/' ~ project.fileName) }}" class="underline" target="_blank">Téléchargez notre documentation technique</a>
+                {% endif %}
+                {% if project.fileName %}
+                    <h3>Documentation technique</h3>
+                    <a href="{{ asset('fichiers/' ~ project.fileName) }}" class="underline" target="_blank">Téléchargez notre documentation technique</a>
+                {% endif %}
             </section>
             <section class="youtube-links mb-24">
                 <h2>{{ project.title }} en vidéo{{ project.youtubelinks|length > 1 ? 's' : '' }}</h2>

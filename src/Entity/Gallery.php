@@ -22,7 +22,7 @@ class Gallery
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'galleries')]
+    #[ORM\ManyToOne(inversedBy: 'galleries', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Project $project = null;
 

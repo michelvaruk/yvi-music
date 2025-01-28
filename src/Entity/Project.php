@@ -48,13 +48,13 @@ class Project
     /**
      * @var Collection<int, Member>
      */
-    #[ORM\ManyToMany(targetEntity: Member::class, inversedBy: 'project', cascade: ['persist'])]
+    #[ORM\ManyToMany(targetEntity: Member::class, inversedBy: 'project', cascade: ['persist', 'remove'])]
     private Collection $members;
 
     /**
      * @var Collection<int, Gallery>
      */
-    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'project', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $galleries;
 
     /**

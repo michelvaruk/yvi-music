@@ -14,7 +14,7 @@
             <p class="text-center">{{ calendar.project.title }}</p>
             <p class="text-center"><span class="underline">Type de concert :</span> {{ calendar.type }}</p>
             {% if calendar.url %}
-                <p class="text-center">Pour plus de renseignements : {{ calendar.url }}</p>
+                <p class="text-center">Pour plus de renseignements : <a href="{{ calendar.url }}" class="underline" target="_blank">{{ calendar.url }}</a></p>
             {% endif %}
             <section class="py-8">
                 <h3 class="calendar-go">Se rendre au concert</h3>
